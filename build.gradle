@@ -1,4 +1,11 @@
-apply from: 'gradle/gradle-android-utils/build.gradle'
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.2'
+    }
+}
 
 ext {
     githubProjectName = 'Rebuild'
@@ -7,13 +14,12 @@ ext {
     ]
 }
 
-allprojects { project ->
-    buildscript {
-        repositories {
-            mavenCentral()
-        }
-    }
+allprojects {
     repositories {
-        mavenCentral()
+        jcenter()
     }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
