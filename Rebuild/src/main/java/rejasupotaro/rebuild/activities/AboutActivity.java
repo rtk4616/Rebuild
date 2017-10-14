@@ -2,7 +2,7 @@ package rejasupotaro.rebuild.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.ListView;
 
@@ -18,7 +18,7 @@ import rejasupotaro.rebuild.data.models.Developer;
 import rejasupotaro.rebuild.utils.ViewUtils;
 import rejasupotaro.rebuild.views.AppDescriptionView;
 
-public class AboutActivity extends ActionBarActivity {
+public class AboutActivity extends AppCompatActivity {
     @BindView(R.id.about_item_list)
     ListView aboutItemListView;
 

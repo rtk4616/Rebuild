@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,8 +24,9 @@ import rejasupotaro.rebuild.services.PodcastPlayerService;
 import rejasupotaro.rebuild.tools.MainThreadExecutor;
 import rejasupotaro.rebuild.views.MediaBarView;
 
-public class EpisodeListActivity extends ActionBarActivity
+public class EpisodeListActivity extends AppCompatActivity
         implements EpisodeListFragment.OnEpisodeSelectListener {
+
     private static final String EXTRA_EPISODE_ID = "extra_episode_id";
 
     @BindView(R.id.media_bar)

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +26,8 @@ import rejasupotaro.rebuild.utils.IntentUtils;
 import rejasupotaro.rebuild.views.ObservableScrollView;
 import rx.functions.Action1;
 
-public class EpisodeDetailActivity extends ActionBarActivity {
+public class EpisodeDetailActivity extends AppCompatActivity {
+
     private static final String EXTRA_EPISODE_ID = "extra_episode_id";
 
     @BindView(R.id.scroll_view)

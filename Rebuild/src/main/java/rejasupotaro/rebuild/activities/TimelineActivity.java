@@ -5,7 +5,7 @@ import android.content.Loader;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +25,7 @@ import rejasupotaro.rebuild.utils.IntentUtils;
 import rejasupotaro.rebuild.utils.StringUtils;
 import rejasupotaro.rebuild.views.StateFrameLayout;
 
-public class TimelineActivity extends ActionBarActivity {
+public class TimelineActivity extends AppCompatActivity {
     private static final int REQUEST_TWEET_LIST = 1;
 
     @BindView(R.id.state_frame_layout)

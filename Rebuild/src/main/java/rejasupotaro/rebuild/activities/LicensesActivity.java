@@ -2,7 +2,7 @@ package rejasupotaro.rebuild.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
@@ -10,7 +10,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rejasupotaro.rebuild.R;
 
-public class LicensesActivity extends ActionBarActivity {
+public class LicensesActivity extends AppCompatActivity {
+
     private static final String LICENSES_FILE_PATH = "file:///android_asset/licenses.html";
 
     @BindView(R.id.licenses_view)

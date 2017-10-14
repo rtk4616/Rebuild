@@ -6,14 +6,14 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import rejasupotaro.rebuild.R;
 import rejasupotaro.rebuild.listener.NotificationEpisodesCheckBoxChangeListener;
 import rejasupotaro.rebuild.utils.PreferenceUtils;
 
-public class SettingsActivity extends ActionBarActivity {
+public class SettingsActivity extends AppCompatActivity {
     public static Intent createIntent(Context context) {
         return new Intent(context, SettingsActivity.class);
     }

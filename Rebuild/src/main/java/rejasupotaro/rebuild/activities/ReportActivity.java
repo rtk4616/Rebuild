@@ -3,11 +3,12 @@ package rejasupotaro.rebuild.activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import rejasupotaro.rebuild.R;
 
-public class ReportActivity extends ActionBarActivity {
+public class ReportActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
