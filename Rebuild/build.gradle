@@ -27,7 +27,7 @@ android {
 
     defaultConfig {
         applicationId "rejasupotaro.rebuild"
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}-${revisionHash}"
