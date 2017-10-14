@@ -100,11 +100,6 @@ public class EpisodeDetailActivity extends AppCompatActivity {
 
             titleTextView.setAlpha(alpha / 255F);
         });
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            int statusBarHeight = StatusBar.getStatusBarHeight(this);
-//            statusBar.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, statusBarHeight));
-//        }
     }
 
     @Override
