@@ -13,8 +13,8 @@ import com.squareup.otto.Subscribe;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import rejasupotaro.rebuild.R;
 import rejasupotaro.rebuild.data.models.Episode;
 import rejasupotaro.rebuild.dialogs.EpisodePlayDialog;
@@ -34,19 +34,19 @@ import rejasupotaro.rebuild.views.StateFrameLayout;
 import uk.me.lewisdeane.ldialogs.CustomDialog;
 
 public class EpisodeMediaFragment extends Fragment {
-    @InjectView(R.id.episode_title)
+    @BindView(R.id.episode_title)
     TextView episodeTitleTextView;
-    @InjectView(R.id.episode_detail_header_cover)
+    @BindView(R.id.episode_detail_header_cover)
     View mediaStartButtonOnImageCover;
-    @InjectView(R.id.media_current_time)
+    @BindView(R.id.media_current_time)
     TextView mediaCurrentTimeTextView;
-    @InjectView(R.id.media_duration)
+    @BindView(R.id.media_duration)
     TextView mediaDurationTextView;
-    @InjectView(R.id.media_play_and_pause_button)
+    @BindView(R.id.media_play_and_pause_button)
     CheckBox mediaPlayAndPauseButton;
-    @InjectView(R.id.media_seekbar)
+    @BindView(R.id.media_seekbar)
     SeekBar seekBar;
-    @InjectView(R.id.state_frame_layout)
+    @BindView(R.id.state_frame_layout)
     StateFrameLayout stateFrameLayout;
 
     private Episode episode;
@@ -58,7 +58,7 @@ public class EpisodeMediaFragment extends Fragment {
                              Bundle savedInstanceState) {
         BusProvider.getInstance().register(this);
         View view = inflater.inflate(R.layout.fragment_episode_media, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -70,7 +70,6 @@ public class EpisodeMediaFragment extends Fragment {
     @Override
     public void onDestroyView() {
         BusProvider.getInstance().unregister(this);
-        ButterKnife.reset(this);
         super.onDestroyView();
     }
 

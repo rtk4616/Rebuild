@@ -10,29 +10,29 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import rejasupotaro.rebuild.R;
 import rejasupotaro.rebuild.data.models.Tweet;
 import rejasupotaro.rebuild.utils.PicassoHelper;
 
 public class TweetListAdapter extends BindableAdapter<Tweet> {
     public static class ViewHolder {
-        @InjectView(R.id.user_profile_image)
+        @BindView(R.id.user_profile_image)
         ImageView userProfileImageView;
-        @InjectView(R.id.created_at_text)
+        @BindView(R.id.created_at_text)
         TextView createdAtTextView;
-        @InjectView(R.id.user_name_text)
+        @BindView(R.id.user_name_text)
         TextView userNameTextView;
-        @InjectView(R.id.tweet_text)
+        @BindView(R.id.tweet_text)
         TextView tweetTextView;
-        @InjectView(R.id.retweet_count_text)
+        @BindView(R.id.retweet_count_text)
         TextView retweetCountTextView;
-        @InjectView(R.id.favorite_count_text)
+        @BindView(R.id.favorite_count_text)
         TextView favoriteCountTextView;
 
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 
@@ -41,7 +41,7 @@ public class TweetListAdapter extends BindableAdapter<Tweet> {
     }
 
     public TweetListAdapter(Context context,
-            List<Tweet> episodeList) {
+                            List<Tweet> episodeList) {
         super(context, episodeList);
     }
 

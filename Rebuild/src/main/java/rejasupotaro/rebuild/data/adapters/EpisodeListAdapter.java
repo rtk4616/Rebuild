@@ -11,8 +11,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import rejasupotaro.rebuild.R;
 import rejasupotaro.rebuild.data.models.Episode;
 import rejasupotaro.rebuild.data.models.Link;
@@ -86,19 +86,19 @@ public class EpisodeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public static class HeaderViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.show_note)
+        @BindView(R.id.show_note)
         ShowNoteView showNoteView;
-        @InjectView(R.id.episode_title)
+        @BindView(R.id.episode_title)
         TextView titleTextView;
-        @InjectView(R.id.episode_subtitle)
+        @BindView(R.id.episode_subtitle)
         TextView subtitleTextView;
-        @InjectView(R.id.episode_download_button)
+        @BindView(R.id.episode_download_button)
         IconTextView episodeDownloadButton;
-        @InjectView(R.id.simple_guest_list)
+        @BindView(R.id.simple_guest_list)
         SimpleGuestListView simpleGuestListView;
-        @InjectView(R.id.episode_posted_at)
+        @BindView(R.id.episode_posted_at)
         IconTextView postedAtTextView;
-        @InjectView(R.id.download_state_text)
+        @BindView(R.id.download_state_text)
         TextView downloadStateText;
 
         private View view;
@@ -111,7 +111,7 @@ public class EpisodeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         private HeaderViewHolder(View view, OnItemClickListener onItemClickListener) {
             super(view);
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
             this.view = view;
             this.onItemClickListener = onItemClickListener;
         }
@@ -173,15 +173,15 @@ public class EpisodeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.episode_title)
+        @BindView(R.id.episode_title)
         TextView titleTextView;
-        @InjectView(R.id.episode_subtitle)
+        @BindView(R.id.episode_subtitle)
         TextView subtitleTextView;
-        @InjectView(R.id.episode_download_button)
+        @BindView(R.id.episode_download_button)
         IconTextView episodeDownloadButton;
-        @InjectView(R.id.episode_posted_at)
+        @BindView(R.id.episode_posted_at)
         IconTextView postedAtTextView;
-        @InjectView(R.id.download_state_text)
+        @BindView(R.id.download_state_text)
         TextView downloadStateText;
 
         private View view;
@@ -196,7 +196,7 @@ public class EpisodeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             super(view);
             this.view = view;
             this.onItemClickListener = onItemClickListener;
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
 
         public void bind(final Episode episode) {
@@ -224,9 +224,9 @@ public class EpisodeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    public static interface OnItemClickListener {
-        public void onClick(Episode episode);
+    public interface OnItemClickListener {
+        void onClick(Episode episode);
 
-        public void onDownloadButtonClick(Episode episode);
+        void onDownloadButtonClick(Episode episode);
     }
 }

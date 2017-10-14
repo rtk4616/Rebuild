@@ -9,8 +9,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import rejasupotaro.rebuild.R;
 import rejasupotaro.rebuild.data.adapters.AboutItemListAdapter;
 import rejasupotaro.rebuild.data.models.AboutItem;
@@ -19,14 +19,14 @@ import rejasupotaro.rebuild.utils.ViewUtils;
 import rejasupotaro.rebuild.views.AppDescriptionView;
 
 public class AboutActivity extends ActionBarActivity {
-    @InjectView(R.id.about_item_list)
+    @BindView(R.id.about_item_list)
     ListView aboutItemListView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         setupActionBar();
         setupAboutListItemView();
     }

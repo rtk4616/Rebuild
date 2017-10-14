@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply from: "${rootDir}/gradle/gradle-findbugs/findbugs.gradle"
 
+
 repositories {
     maven {
         url 'https://raw.github.com/rejasupotaro/AsyncRssClient/master/AsyncRssClient/repository'
@@ -9,6 +10,7 @@ repositories {
     flatDir {
         dirs 'src/main/libs'
     }
+    google()
 }
 
 def versionMajor = 1
@@ -19,7 +21,7 @@ def revisionHash = ["sh", "-c", "cd ${project.rootDir} ; git rev-parse --short H
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "26.0.2"
 
     useLibrary 'org.apache.http.legacy'
 
@@ -60,10 +62,6 @@ android {
         }
     }
 
-    productFlavors {
-        staging {}
-    }
-
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/DEPENDENCIES.txt'
@@ -85,23 +83,24 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'src/main/libs', include: '*.jar')
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support:recyclerview-v7:25.0.0'
-    compile 'com.android.support:cardview-v7:25.0.0'
-    compile 'com.jakewharton:butterknife:6.0.0'
-    compile 'rejasupotaro:async-rss-client:0.0.6'
-    compile 'com.squareup:otto:1.3.2'
-    compile 'com.loopj.android:android-async-http:1.4.4'
-    compile 'org.apache.commons:commons-lang3:3.1'
-    compile 'com.squareup.picasso:picasso:2.0.0'
-    compile 'org.twitter4j:twitter4j-core:3.0.5'
-    compile 'com.netflix.rxjava:rxjava-android:0.18.4'
-    compile 'com.joanzapata.android:android-iconify:1.0.6'
-    compile "com.mixpanel.android:mixpanel-android:4.2.1@aar"
-    compile 'uk.me.lewisdeane.ldialogs:ldialogs:1.0@aar'
-    compile 'com.github.castorflex.smoothprogressbar:library-circular:1.0.1'
+    implementation fileTree(dir: 'src/main/libs', include: '*.jar')
+    implementation 'com.android.support:appcompat-v7:25.4.0'
+    implementation 'com.android.support:recyclerview-v7:25.4.0'
+    implementation 'com.android.support:cardview-v7:25.4.0'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'rejasupotaro:async-rss-client:0.0.6'
+    implementation 'com.squareup:otto:1.3.2'
+    implementation 'com.loopj.android:android-async-http:1.4.4'
+    implementation 'org.apache.commons:commons-lang3:3.1'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'org.twitter4j:twitter4j-core:3.0.5'
+    implementation 'com.netflix.rxjava:rxjava-android:0.18.4'
+    implementation 'com.joanzapata.android:android-iconify:1.0.6'
+    implementation "com.mixpanel.android:mixpanel-android:4.2.1@aar"
+    implementation 'uk.me.lewisdeane.ldialogs:ldialogs:1.0@aar'
+    implementation 'com.github.castorflex.smoothprogressbar:library-circular:1.0.1'
 
-    androidTestCompile fileTree(dir: 'src/androidTest/libs', include: '*.jar')
-    androidTestCompile 'com.squareup:fest-android:1.0.7'
+    androidTestImplementation fileTree(dir: 'src/androidTest/libs', include: '*.jar')
+    androidTestImplementation 'com.squareup:fest-android:1.0.7'
 }

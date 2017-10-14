@@ -14,13 +14,13 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import rejasupotaro.rebuild.R;
 import rejasupotaro.rebuild.data.adapters.TweetListAdapter;
-import rejasupotaro.rebuild.listener.MoreLoadListener;
 import rejasupotaro.rebuild.data.loaders.TweetLoader;
 import rejasupotaro.rebuild.data.models.Tweet;
+import rejasupotaro.rebuild.listener.MoreLoadListener;
 import rejasupotaro.rebuild.utils.IntentUtils;
 import rejasupotaro.rebuild.utils.StringUtils;
 import rejasupotaro.rebuild.views.StateFrameLayout;
@@ -28,11 +28,11 @@ import rejasupotaro.rebuild.views.StateFrameLayout;
 public class TimelineActivity extends ActionBarActivity {
     private static final int REQUEST_TWEET_LIST = 1;
 
-    @InjectView(R.id.state_frame_layout)
+    @BindView(R.id.state_frame_layout)
     StateFrameLayout stateFrameLayout;
-    @InjectView(R.id.swipe_refresh_layout)
+    @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
-    @InjectView(R.id.tweet_list)
+    @BindView(R.id.tweet_list)
     ListView tweetListView;
 
     private TweetListAdapter tweetListAdapter;
@@ -41,7 +41,7 @@ public class TimelineActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         setupActionBar();
         setupTweetListView();

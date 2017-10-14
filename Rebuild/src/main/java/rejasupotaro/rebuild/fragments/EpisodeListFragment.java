@@ -17,8 +17,8 @@ import com.squareup.otto.Subscribe;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import rejasupotaro.rebuild.R;
 import rejasupotaro.rebuild.activities.TimelineActivity;
 import rejasupotaro.rebuild.api.RssFeedClient;
@@ -38,9 +38,9 @@ import uk.me.lewisdeane.ldialogs.CustomDialog;
 public class EpisodeListFragment extends Fragment {
     private static final int REQUEST_TWEET_LIST = 1;
 
-    @InjectView(R.id.recent_tweet_view)
+    @BindView(R.id.recent_tweet_view)
     RecentTweetView recentTweetView;
-    @InjectView(R.id.episode_list)
+    @BindView(R.id.episode_list)
     RecyclerView episodeListView;
 
     private RssFeedClient rssFeedClient = new RssFeedClient();
@@ -64,7 +64,7 @@ public class EpisodeListFragment extends Fragment {
                              Bundle savedInstanceState) {
         BusProvider.getInstance().register(this);
         View view = inflater.inflate(R.layout.fragment_episode_list, null);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -80,7 +80,6 @@ public class EpisodeListFragment extends Fragment {
     @Override
     public void onDestroyView() {
         BusProvider.getInstance().unregister(this);
-        ButterKnife.reset(this);
         super.onDestroyView();
     }
 

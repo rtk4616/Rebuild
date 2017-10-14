@@ -12,14 +12,14 @@ import android.view.MenuItem;
 
 import com.squareup.otto.Subscribe;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import rejasupotaro.rebuild.R;
+import rejasupotaro.rebuild.data.models.Episode;
 import rejasupotaro.rebuild.events.BusProvider;
 import rejasupotaro.rebuild.events.EpisodePlayStartEvent;
 import rejasupotaro.rebuild.fragments.EpisodeListFragment;
 import rejasupotaro.rebuild.media.PodcastPlayer;
-import rejasupotaro.rebuild.data.models.Episode;
 import rejasupotaro.rebuild.services.PodcastPlayerService;
 import rejasupotaro.rebuild.tools.MainThreadExecutor;
 import rejasupotaro.rebuild.views.MediaBarView;
@@ -28,7 +28,7 @@ public class EpisodeListActivity extends ActionBarActivity
         implements EpisodeListFragment.OnEpisodeSelectListener {
     private static final String EXTRA_EPISODE_ID = "extra_episode_id";
 
-    @InjectView(R.id.media_bar)
+    @BindView(R.id.media_bar)
     MediaBarView mediaBar;
 
     private MainThreadExecutor mainThreadExecutor = new MainThreadExecutor();
@@ -43,7 +43,7 @@ public class EpisodeListActivity extends ActionBarActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episode_list);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         BusProvider.getInstance().register(this);
 
         setupActionBar();

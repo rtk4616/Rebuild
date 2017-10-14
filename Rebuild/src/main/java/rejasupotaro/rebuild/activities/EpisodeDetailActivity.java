@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.squareup.otto.Subscribe;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import rejasupotaro.rebuild.R;
 import rejasupotaro.rebuild.data.models.Episode;
 import rejasupotaro.rebuild.events.BusProvider;
@@ -29,7 +29,7 @@ import rx.functions.Action1;
 public class EpisodeDetailActivity extends ActionBarActivity {
     private static final String EXTRA_EPISODE_ID = "extra_episode_id";
 
-    @InjectView(R.id.scroll_view)
+    @BindView(R.id.scroll_view)
     ObservableScrollView scrollView;
 
     private Episode episode;
@@ -47,7 +47,7 @@ public class EpisodeDetailActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_episode_detail);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         BusProvider.getInstance().register(this);
 
         String episodeId = getIntent().getStringExtra(EXTRA_EPISODE_ID);
