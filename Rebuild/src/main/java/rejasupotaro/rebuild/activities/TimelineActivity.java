@@ -8,8 +8,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -68,30 +66,22 @@ public class TimelineActivity extends AppCompatActivity {
         tweetListAdapter = new TweetListAdapter(this);
         tweetListView.setAdapter(tweetListAdapter);
 
-        tweetListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Tweet item = tweetListAdapter.getItem(i);
-                IntentUtils.openTwitter(TimelineActivity.this, item.getTweetId(),
-                        item.getUserName());
-            }
+        tweetListView.setOnItemClickListener((adapterView, view, i, l) -> {
+            Tweet item = tweetListAdapter.getItem(i);
+            IntentUtils.openTwitter(TimelineActivity.this, item.getTweetId(),
+                    item.getUserName());
         });
 
         requestTweetList();
     }
 
     private void setupSwipeRefreshLayout() {
-        swipeRefreshLayout.setColorScheme(
+        swipeRefreshLayout.setColorSchemeResources(
                 android.R.color.holo_blue_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refresh();
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(() -> refresh());
     }
 
     private void refresh() {

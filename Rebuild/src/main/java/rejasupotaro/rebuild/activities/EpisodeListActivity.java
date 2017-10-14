@@ -24,8 +24,7 @@ import rejasupotaro.rebuild.services.PodcastPlayerService;
 import rejasupotaro.rebuild.tools.MainThreadExecutor;
 import rejasupotaro.rebuild.views.MediaBarView;
 
-public class EpisodeListActivity extends AppCompatActivity
-        implements EpisodeListFragment.OnEpisodeSelectListener {
+public class EpisodeListActivity extends AppCompatActivity implements EpisodeListFragment.OnEpisodeSelectListener {
 
     private static final String EXTRA_EPISODE_ID = "extra_episode_id";
 
@@ -72,6 +71,22 @@ public class EpisodeListActivity extends AppCompatActivity
         super.onDestroy();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                startActivity(SettingsActivity.createIntent(this));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void parseIntent(Intent intent) {
         if (intent == null) {
             return;
@@ -102,12 +117,6 @@ public class EpisodeListActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
     public void onSelect(Episode episode) {
         String episodeId = episode.getEpisodeId();
         if (TextUtils.isEmpty(episodeId)) {
@@ -125,21 +134,6 @@ public class EpisodeListActivity extends AppCompatActivity
     @Subscribe
     public void onEpisodePlayStart(final EpisodePlayStartEvent event) {
         final Episode episode = Episode.findById(event.getEpisodeId());
-        mainThreadExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                setupMediaBar(episode);
-            }
-        });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                startActivity(SettingsActivity.createIntent(this));
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+        mainThreadExecutor.execute(() -> setupMediaBar(episode));
     }
 }

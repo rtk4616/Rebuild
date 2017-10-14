@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.squareup.otto.Subscribe;
@@ -24,7 +23,6 @@ import rejasupotaro.rebuild.fragments.EpisodeMediaFragment;
 import rejasupotaro.rebuild.tools.MainThreadExecutor;
 import rejasupotaro.rebuild.utils.IntentUtils;
 import rejasupotaro.rebuild.views.ObservableScrollView;
-import rx.functions.Action1;
 
 public class EpisodeDetailActivity extends AppCompatActivity {
 
@@ -72,43 +70,35 @@ public class EpisodeDetailActivity extends AppCompatActivity {
     private void setupActionBar() {
         setTitle("");
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 //        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                close();
-            }
-        });
+        toolbar.setNavigationOnClickListener(view -> close());
 
         final ColorDrawable colorDrawable = new ColorDrawable(
                 getResources().getColor(R.color.dark_gray));
         colorDrawable.setAlpha(0);
-        toolbar.setBackgroundDrawable(colorDrawable);
+        toolbar.setBackground(colorDrawable);
 
-        final TextView titleTextView = (TextView) findViewById(R.id.toolbar_title);
+        final TextView titleTextView = findViewById(R.id.toolbar_title);
         titleTextView.setText(episode.getTitle());
         titleTextView.setAlpha(0);
 
-        scrollView.getScrollEvent().subscribe(new Action1<ObservableScrollView.ScrollPosition>() {
-            @Override
-            public void call(ObservableScrollView.ScrollPosition scrollPosition) {
-                int alpha;
-                int y = scrollPosition.current.y;
-                if (y < 0) {
-                    alpha = 0;
-                } else if (y > 500) {
-                    alpha = 255;
-                } else {
-                    alpha = (int) ((y / 500.0) * 255);
-                }
-                colorDrawable.setAlpha(alpha);
-                toolbar.setBackgroundDrawable(colorDrawable);
-
-                titleTextView.setAlpha(alpha / 255F);
+        scrollView.getScrollEvent().subscribe(scrollPosition -> {
+            int alpha;
+            int y = scrollPosition.current.y;
+            if (y < 0) {
+                alpha = 0;
+            } else if (y > 500) {
+                alpha = 255;
+            } else {
+                alpha = (int) ((y / 500.0) * 255);
             }
+            colorDrawable.setAlpha(alpha);
+            toolbar.setBackground(colorDrawable);
+
+            titleTextView.setAlpha(alpha / 255F);
         });
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -160,11 +150,6 @@ public class EpisodeDetailActivity extends AppCompatActivity {
 
         this.episode = episode;
 
-        mainThreadExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                episodeMediaFragment.setup(EpisodeDetailActivity.this.episode);
-            }
-        });
+        mainThreadExecutor.execute(() -> episodeMediaFragment.setup(EpisodeDetailActivity.this.episode));
     }
 }
