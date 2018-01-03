@@ -9,9 +9,9 @@ import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
-import butterknife.BindView
 import butterknife.ButterKnife
 import com.squareup.otto.Subscribe
+import kotlinx.android.synthetic.main.activity_episode_list.*
 import rejasupotaro.rebuild.R
 import rejasupotaro.rebuild.data.models.Episode
 import rejasupotaro.rebuild.events.BusProvider
@@ -20,12 +20,8 @@ import rejasupotaro.rebuild.fragments.EpisodeListFragment
 import rejasupotaro.rebuild.media.PodcastPlayer
 import rejasupotaro.rebuild.services.PodcastPlayerService
 import rejasupotaro.rebuild.tools.MainThreadExecutor
-import rejasupotaro.rebuild.views.MediaBarView
 
 class EpisodeListActivity : AppCompatActivity(), EpisodeListFragment.OnEpisodeSelectListener {
-
-    @BindView(R.id.media_bar)
-    private var mediaBar: MediaBarView? = null
 
     private val mainThreadExecutor = MainThreadExecutor()
 
@@ -103,7 +99,7 @@ class EpisodeListActivity : AppCompatActivity(), EpisodeListFragment.OnEpisodeSe
     }
 
     private fun setupMediaBar(episode: Episode?) {
-        mediaBar?.setEpisode(episode) { e -> openEpisodeDetailActivity(e.episodeId) }
+        media_bar?.setEpisode(episode) { e -> openEpisodeDetailActivity(e.episodeId) }
     }
 
     override fun onSelect(episode: Episode) {
