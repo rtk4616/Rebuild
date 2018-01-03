@@ -104,7 +104,7 @@ class EpisodeDetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         //        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-        toolbar.setNavigationOnClickListener { F_ -> close() }
+        toolbar.setNavigationOnClickListener { _ -> close() }
 
         val colorDrawable = ColorDrawable(ContextCompat.getColor(this, R.color.dark_gray))
         colorDrawable.alpha = 0

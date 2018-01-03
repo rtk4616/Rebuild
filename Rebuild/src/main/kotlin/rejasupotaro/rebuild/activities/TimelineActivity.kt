@@ -8,7 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_timeline.*
 import rejasupotaro.rebuild.R
-import rejasupotaro.rebuild.data.adapters.TweetListAdapter
+import rejasupotaro.rebuild.data.adapter.TweetListAdapter
 import rejasupotaro.rebuild.data.loaders.TweetLoader
 import rejasupotaro.rebuild.data.models.Tweet
 import rejasupotaro.rebuild.listener.MoreLoadListener
