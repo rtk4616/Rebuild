@@ -15,8 +15,8 @@ public class ActivityLifecycleObserver implements Application.ActivityLifecycleC
     private boolean isInBackground = false;
     private OnActivityStoppedListener onActivityStoppedListener;
 
-    public static interface OnActivityStoppedListener {
-        public void onAllStop();
+    public interface OnActivityStoppedListener {
+        void onAllStop();
     }
 
     public static void initialize(Application application, OnActivityStoppedListener onActivityStoppedListener) {
