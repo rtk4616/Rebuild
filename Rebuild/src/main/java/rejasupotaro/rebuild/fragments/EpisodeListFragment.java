@@ -38,30 +38,29 @@ import uk.me.lewisdeane.ldialogs.CustomDialog;
 public class EpisodeListFragment extends Fragment {
     private static final int REQUEST_TWEET_LIST = 1;
 
-    @BindView(R.id.recent_tweet_view)
-    RecentTweetView recentTweetView;
-    @BindView(R.id.episode_list)
-    RecyclerView episodeListView;
-
     private RssFeedClient rssFeedClient = new RssFeedClient();
     private MainThreadExecutor mainThreadExecutor = new MainThreadExecutor();
     private EpisodeListAdapter episodeListAdapter;
     private OnEpisodeSelectListener listener;
 
-    public static interface OnEpisodeSelectListener {
+    @BindView(R.id.recent_tweet_view)
+    RecentTweetView recentTweetView;
+    @BindView(R.id.episode_list)
+    RecyclerView episodeListView;
 
-        public void onSelect(Episode episode);
+    public interface OnEpisodeSelectListener {
+
+        void onSelect(Episode episode);
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        listener = (OnEpisodeSelectListener) activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (OnEpisodeSelectListener) context;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         BusProvider.getInstance().register(this);
         View view = inflater.inflate(R.layout.fragment_episode_list, null);
         ButterKnife.bind(this, view);
@@ -105,12 +104,7 @@ public class EpisodeListFragment extends Fragment {
 
     private void setupListViewHeader() {
         recentTweetView.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(getActivity(), TimelineActivity.class));
-                    }
-                }
+                view -> startActivity(new Intent(getActivity(), TimelineActivity.class))
         );
     }
 
@@ -118,13 +112,10 @@ public class EpisodeListFragment extends Fragment {
         rssFeedClient.request(new RssFeedClient.EpisodeClientResponseHandler() {
             @Override
             public void onSuccess(final List<Episode> episodeList) {
-                mainThreadExecutor.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        BusProvider.getInstance()
-                                .post(new LoadEpisodeListCompleteEvent(episodeList));
-                        setupEpisodeListView(episodeList);
-                    }
+                mainThreadExecutor.execute(() -> {
+                    BusProvider.getInstance()
+                            .post(new LoadEpisodeListCompleteEvent(episodeList));
+                    setupEpisodeListView(episodeList);
                 });
             }
 
@@ -168,21 +159,11 @@ public class EpisodeListFragment extends Fragment {
 
     @Subscribe
     public void onEpisodeDownloadComplete(final DownloadEpisodeCompleteEvent event) {
-        mainThreadExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                requestFeed();
-            }
-        });
+        mainThreadExecutor.execute(this::requestFeed);
     }
 
     @Subscribe
     public void onEpisodeCacheCleared(final ClearEpisodeCacheEvent event) {
-        mainThreadExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                episodeListAdapter.notifyDataSetChanged();
-            }
-        });
+        mainThreadExecutor.execute(() -> episodeListAdapter.notifyDataSetChanged());
     }
 }
