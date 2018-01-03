@@ -27,12 +27,12 @@ class EpisodeListActivity : AppCompatActivity(), EpisodeListFragment.OnEpisodeSe
 
     companion object {
 
-        private val EXTRA_EPISODE_ID = "extra_episode_id"
+        private const val EXTRA_EPISODE_ID = "extra_episode_id"
 
         fun createIntent(context: Context, episodeId: String): Intent {
-            val intent = Intent(context, EpisodeListActivity::class.java)
-            intent.putExtra(EXTRA_EPISODE_ID, episodeId)
-            return intent
+            return Intent(context, EpisodeListActivity::class.java).apply {
+                putExtra(EXTRA_EPISODE_ID, episodeId)
+            }
         }
     }
 
