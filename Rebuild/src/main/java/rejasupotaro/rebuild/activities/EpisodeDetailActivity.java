@@ -126,7 +126,7 @@ public class EpisodeDetailActivity extends AppCompatActivity {
                 close();
                 return true;
             case R.id.action_settings:
-                startActivity(SettingsActivity.createIntent(this));
+                startActivity(SettingsActivity.Companion.createIntent(this));
                 return true;
             case R.id.action_share:
                 IntentUtils.shareEpisode(this, episode);

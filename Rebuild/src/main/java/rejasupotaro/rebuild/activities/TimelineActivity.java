@@ -141,7 +141,7 @@ public class TimelineActivity extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.action_settings:
-                startActivity(SettingsActivity.createIntent(this));
+                startActivity(SettingsActivity.Companion.createIntent(this));
                 break;
         }
         return super.onOptionsItemSelected(item);
